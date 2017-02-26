@@ -11,7 +11,7 @@ use Mix.Config
 # You can configure for your application as:
 #
   config :fb_event_map,
-    default_fb_token: "fail",
+    default_fb_token: "",
     allowed_origin: ~r/^https?:\/\/(localhost|mromnia.github.io)/,
     port: 5050
 #

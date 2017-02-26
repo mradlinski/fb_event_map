@@ -5,14 +5,14 @@ services:
         build:
             context: ./web
             args:
-                - mix_env=dev
+                - mix_env=prod
         environment:
-            - MIX_ENV=dev
+            - MIX_ENV=prod
+            - FB_EV_MAP_DEFAULT_TOKEN=${FB_EV_MAP_DEFAULT_TOKEN}
         links:
             - redis:redis
         ports:
             - "5050:5050"
-        tty: true
 
     redis:
         restart: always

@@ -21,3 +21,4 @@ erl_crash.dump
 
 config/**
 !config/config.exs
+!config/prod.exs
