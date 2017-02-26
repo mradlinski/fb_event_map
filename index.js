@@ -11,6 +11,25 @@ var initMap = function() {
 	var searchBox = new google.maps.places.SearchBox(input);
 	map.controls[google.maps.ControlPosition.LEFT_TOP].push(input);
 
+	(function() {
+		var searchNotifCancelled = false;
+
+		$(input).on('focus', function() {
+			searchNotifCancelled = true;
+		});
+
+		setTimeout(function() {
+			if (searchNotifCancelled) {
+				return;
+			}
+
+			toastr.success('You can also search for your favourite place in the searchbox in the top left corner.', null, {
+				timeOut: 5000,
+				closeButton: true
+			});
+		}, 5000);
+	});
+
 	searchBox.addListener('places_changed', function() {
 		var searchPlaces = searchBox.getPlaces();
 
@@ -53,13 +72,6 @@ var initMap = function() {
 			closeButton: true
 		});
 	}
-
-	setTimeout(function() {
-		toastr.success('You can also search for your favourite place in the searchbox in the top left corner.', null, {
-			timeOut: 5000,
-			closeButton: true
-		});
-	}, 5000);
 
 	var placeLookupTable = {};
 	var places = [];

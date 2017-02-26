@@ -35,7 +35,7 @@
 
 		#location-search-input {
 			width: 300px;
-			max-width: 80%;
+			max-width: 50%;
 			margin: 10px;
 			padding: 5px;
 			font-size: 1.5em;
@@ -48,14 +48,14 @@
 </head>
 
 <body>
-	<input id="location-search-input" type="text" placeholder="Search..." />
+	<input id="location-search-input" type="search" placeholder="Search..." />
 	<div id="map"></div>
 	<div data-remodal-id="fb-login-modal">
 		<button data-remodal-action="close" class="remodal-close"></button>
-		<h1>Please log into Facebook</h1>
-		<p>Every time you click on the map we make quite a few requests to Facebook. Those requests are rate limited, and the limit depends on the number of users that logged in.</p>
+		<h2>Please log into Facebook</h2>
+		<p>To show you events, we make many requests to the Facebook API. Those requests are limited, and the limit depends on the number of logged in users.</p>
 		<p>Going over the limit will block this app for everyone, so please log in and increase it!</p>
-		<p>Keep in mind we do <b>not</b> collect any information about your Facebook account.</p>
+		<p>Keep in mind we do <b>not</b> collect <b>any</b> information about your Facebook account.</p>
 		<div class="fb-login-button-container">
 			<div class="fb-login-button" onlogin="FBLogin.onFBLogin()" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false">
 			</div>
