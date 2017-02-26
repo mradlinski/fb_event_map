@@ -30,17 +30,18 @@ var initMap = function() {
 		});
 	}
 
-	var markers = [];
-	var infoWindows = [];
+	var placeLookupTable = {};
+	var places = [];
 	var currentOpenInfoWindow = null;
 
-	var addMarkerWithDescription = function(lat, lng, desc) {
+	var addMarkerWithDescription = function(lat, lng, label, desc) {
 		var marker = new google.maps.Marker({
 			position: {
 				lat: lat,
 				lng: lng
 			},
-			map: map
+			map: map,
+			label: label + ''
 		});
 
 		var infoWindow = new google.maps.InfoWindow({
@@ -56,13 +57,28 @@ var initMap = function() {
 			infoWindow.open(map, marker);
 		});
 
-		markers.push(marker);
+		return {
+			marker: marker,
+			infoWindow: infoWindow
+		};
+	};
+
+	var garbageCollectPlaces = function() {
+		while (places.length > FB_EV_MAP.MAX_PLACES_DISPLAYED) {
+			var p = places.shift();
+
+			p.repr.marker.setMap(null);
+			p.repr.infoWindow.setMap(null);
+
+			placeLookupTable[p.place.id] = undefined;
+		}
 	};
 
 
 	var getPlacesNearPoint = (function() {
 		var loadingBlocked = false;
 		var timesLoaded = 0;
+		var fbLoginPrompted = false;
 
 		return function(lat, lng) {
 			if (loadingBlocked) {
@@ -71,8 +87,9 @@ var initMap = function() {
 
 			var fbToken = FBLogin.getFBToken();
 
-			if (timesLoaded > FB_EV_MAP.EVENT_LOADS_BEFORE_LOGIN_PROMPT && !fbToken) {
+			if (!fbLoginPrompted && timesLoaded > FB_EV_MAP.EVENT_LOADS_BEFORE_LOGIN_PROMPT && !fbToken) {
 				FBLogin.promptFacebookLogin();
+				fbLoginPrompted = true;
 				return;
 			}
 
@@ -82,13 +99,11 @@ var initMap = function() {
 
 			loadingBlocked = true;
 
-			var headers = {};
-
 			return $.get({
 				url: FB_EV_MAP.API_URL + '/events',
 				data: {
-					lat,
-					lng
+					lat: lat,
+					lng: lng
 				},
 				dataType: 'json',
 				headers: {
@@ -97,12 +112,26 @@ var initMap = function() {
 				timeout: FB_EV_MAP.API_REQ_TIMEOUT
 			}).done(function(res) {
 				res.forEach(function(p) {
-					addMarkerWithDescription(
-						p.location.latitude,
-						p.location.longitude,
-						p.description
-					);
+					if (!placeLookupTable[p.id]) {
+						var repr = addMarkerWithDescription(
+							p.location.latitude,
+							p.location.longitude,
+							p.events.reduce(function(acc, e) {
+								return acc + e.attending_count;
+							}, 0),
+							p.description
+						);
+
+						placeLookupTable[p.id] = true;
+
+						places.push({
+							place: p,
+							repr: repr
+						});
+					}
 				});
+
+				garbageCollectPlaces();
 
 				timesLoaded += 1;
 			}).fail(function(err) {

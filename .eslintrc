@@ -1,0 +1,17 @@
+{
+	"env": {
+		"browser": true
+	},
+	"rules": {
+		"no-tabs": 0,
+		"indent": ["error", "tab", {
+			"SwitchCase": 1
+		}],
+		"operator-linebreak": 0,
+		"no-use-before-define": 2,
+		"semi": ["error", "always"],
+		"key-spacing": 0,
+		"max-len": [2, 120, 2],
+		"object-curly-spacing": [2, "always"]
+	}
+}
