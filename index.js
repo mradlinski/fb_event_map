@@ -3,8 +3,32 @@ toastr.options.extendedTimeOut = 3000;
 
 var initMap = function() {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 14,
+		zoom: FB_EV_MAP.DEFAULT_MAP_ZOOM,
 		center: FB_EV_MAP.DEFAULT_MAP_CENTER
+	});
+
+	var input = document.getElementById('location-search-input');
+	var searchBox = new google.maps.places.SearchBox(input);
+	map.controls[google.maps.ControlPosition.LEFT_TOP].push(input);
+
+	searchBox.addListener('places_changed', function() {
+		var searchPlaces = searchBox.getPlaces();
+
+		if (searchPlaces.length === 0) {
+			return;
+		}
+
+		var place = searchPlaces[0];
+
+		if (!place.geometry) {
+			return;
+		}
+
+		var center = place.geometry.location;
+		map.setCenter(center);
+		map.setZoom(FB_EV_MAP.DEFAULT_MAP_ZOOM);
+
+		getPlacesNearPoint(center.lat, center.lng);
 	});
 
 	if (navigator.geolocation) {
@@ -29,6 +53,13 @@ var initMap = function() {
 			closeButton: true
 		});
 	}
+
+	setTimeout(function() {
+		toastr.success('You can also search for your favourite place in the searchbox in the top left corner.', null, {
+			timeOut: 5000,
+			closeButton: true
+		});
+	}, 5000);
 
 	var placeLookupTable = {};
 	var places = [];
