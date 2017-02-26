@@ -1,0 +1,13 @@
+web:
+    restart: always
+    build: ./web
+    environment:
+        - MIX_ENV=prod
+    links:
+        - redis:redis
+    ports:
+        - "5050:5050"
+
+redis:
+    restart: always
+    build: ./redis
