@@ -41,7 +41,7 @@ var initMap = function() {
 				lng: lng
 			},
 			map: map,
-			label: label + ''
+			label: label ? label + '' : null
 		});
 
 		var infoWindow = new google.maps.InfoWindow({
@@ -116,9 +116,7 @@ var initMap = function() {
 						var repr = addMarkerWithDescription(
 							p.location.latitude,
 							p.location.longitude,
-							p.events.reduce(function(acc, e) {
-								return acc + e.attending_count;
-							}, 0),
+							null,
 							p.description
 						);
 
