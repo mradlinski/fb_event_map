@@ -19,12 +19,12 @@ var initMap = function() {
 			getPlacesNearPoint(lat, lng);
 		});
 
-		toastr.success('Allow this page to know your location or click on the map to load nearby Facebook events on the map!', 'What is this?', {
+		toastr.success('Allow this page to access your location or click on the map to show nearby Facebook events!', 'What is this?', {
 			timeOut: 10000,
 			closeButton: true
 		});
 	} else {
-		toastr.success('Click on the map to load nearby Facebook events on the map!', 'What is this?', {
+		toastr.success('Click on the map to show nearby Facebook events!', 'What is this?', {
 			timeOut: 10000,
 			closeButton: true
 		});
@@ -93,7 +93,7 @@ var initMap = function() {
 				return;
 			}
 
-			var loadingToast = toastr.info('Loading locations...', null, {
+			var loadingToast = toastr.info('Loading places and events...', null, {
 				timeOut: FB_EV_MAP.API_REQ_TIMEOUT
 			});
 
@@ -133,7 +133,7 @@ var initMap = function() {
 
 				timesLoaded += 1;
 			}).fail(function(err) {
-				toastr.error('Sorry, an error occurred!');
+				toastr.error('Sorry, an error occurred! Try again?');
 
 				if (fbToken) {
 					FBLogin.resetFBToken();

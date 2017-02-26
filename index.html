@@ -44,15 +44,15 @@
 	<div data-remodal-id="fb-login-modal">
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<h1>Please log into Facebook</h1>
-		<p>Each of your clicks in this app makes quite a few Facebook API requests.</p>
-		<p>Hitting Facebook's rate limits will block this app for everyone, so please login and increase those limits!</p>
+		<p>Every time you click on the map we make quite a few requests to Facebook. Those requests are rate limited, and the limit depends on the number of users that logged in.</p>
+		<p>Going over the limit will block this app for everyone, so please log in and increase it!</p>
+		<p>Keep in mind we do <b>not</b> collect any information about your Facebook account.</p>
 		<div class="fb-login-button-container">
 			<div class="fb-login-button" onlogin="FBLogin.onFBLogin()" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false">
 			</div>
 		</div>
 	</div>
 
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
