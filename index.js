@@ -4,7 +4,9 @@ toastr.options.extendedTimeOut = 3000;
 var initMap = function() {
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: FB_EV_MAP.DEFAULT_MAP_ZOOM,
-		center: FB_EV_MAP.DEFAULT_MAP_CENTER
+		center: FB_EV_MAP.DEFAULT_MAP_CENTER,
+		mapTypeControl: false,
+		streetViewControl: false
 	});
 
 	var input = document.getElementById('location-search-input');
