@@ -30,6 +30,9 @@ var initMap = function() {
 		}, 5000);
 	});
 
+	var branding = document.getElementById('branding');
+	map.controls[google.maps.ControlPosition.TOP_CENTER].push(branding);
+
 	searchBox.addListener('places_changed', function() {
 		var searchPlaces = searchBox.getPlaces();
 
