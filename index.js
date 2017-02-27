@@ -29,10 +29,14 @@ var initMap = function() {
 	}
 
 	var searchInput = document.getElementById('location-search-input');
+	var logoContainer = document.getElementById('logo');
 	var brandingContainer = document.getElementById('branding');
+	var attributionContainer = document.getElementById('attribution');
 
 	var map = new Map(document.getElementById('map'), center);
 
+	map.addControl(logoContainer, google.maps.ControlPosition.LEFT_TOP);
+	map.addControl(brandingContainer, google.maps.ControlPosition.LEFT_TOP);
 	map.addSearchBox(searchInput, function(newCenter) {
 		map.moveView(newCenter);
 		map.resetZoom();
@@ -40,7 +44,7 @@ var initMap = function() {
 
 		Places.getPlacesNearPoint(newCenter.lat, newCenter.lng, map);
 	});
-	map.addBranding(brandingContainer);
+	map.addControl(attributionContainer, google.maps.ControlPosition.BOTTOM_LEFT);
 
 	map.addClickListener(function(event) {
 		var lat = event.latLng.lat();

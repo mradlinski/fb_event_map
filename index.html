@@ -3,12 +3,22 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="A map that allows you to browse nearby Facebook Events">
+	<meta name="description"
+		content="A service that allows you to browse nearby Facebook Events on a map.">
 	<meta name="keywords" content="facebook,event,map,googlemaps,city">
 	<meta name="author" content="Marcin Radlinski">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>FB Event Map</title>
+	<meta property="og:title"
+		content="evmap" />
+	<meta property="og:image"
+    	content="og-logo.png" />
+	<meta name="og:description"
+		content="A service that allows you to browse nearby Facebook Events on a map.">
+
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<title>evmap - Browse nearby Facebook events on a map!</title>
 
 	<style>
 		html,
@@ -37,16 +47,39 @@
 			width: 300px;
 			max-width: 50%;
 			margin: 10px;
-			margin-top: 30px;
 			padding: 5px;
 			font-size: 1.5em;
 		}
 
-		#branding {
+		#logo {
+			margin: 0 10px;
+			margin-top: 10px;
+			max-width: 40%;
 			opacity: 0.7;
-			font-size: 1.25em;
-			background-color: white;
+			padding: 0 5px;
+		}
+
+		#logo img {
+			max-width: 70%;
+		}
+
+		#branding {
+			margin: 5px 10px;
+			max-width: 40%;
+			opacity: 0.7;
+			font-size: 1.15em;
 			padding: 5px;
+		}
+
+		#branding p {
+			margin: 5px;
+		}
+
+		#attribution {
+			opacity: 0.7;
+			font-size: 0.8em;
+			background-color: white;
+			padding: 3px;
 		}
 	</style>
 
@@ -57,8 +90,14 @@
 
 <body>
 	<input id="location-search-input" type="search" placeholder="Search..." />
-	<span id="branding">by Marcin Radlinski, open sourced at <a href="https://github.com/mromnia/fb_event_map">Github</a></span>
+	<div id="logo">
+		<img src="logo.png" />
+	</div>
+	<div id="branding">
+		<p>by Marcin Radlinski, open sourced on <a href="https://github.com/mromnia/fb_event_map">Github</a></p>
+	</div>
 	<div id="map"></div>
+	<div id="attribution">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 	<div data-remodal-id="fb-login-modal">
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<h2>Please log into Facebook</h2>

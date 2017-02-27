@@ -71,8 +71,8 @@ var Map = function(container, center) {
 				});
 			});
 		},
-		addBranding: function(brandingContainer) {
-			gMap.controls[google.maps.ControlPosition.TOP_CENTER].push(brandingContainer);
+		addControl: function(el, position) {
+			gMap.controls[position].push(el);
 		}
 	};
 };
