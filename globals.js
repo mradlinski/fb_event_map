@@ -9,3 +9,6 @@ var FB_EV_MAP = {
 	API_REQ_TIMEOUT: 10000,
 	MAX_PLACES_DISPLAYED: 200
 };
+
+toastr.options.progressBar = true;
+toastr.options.extendedTimeOut = 3000;

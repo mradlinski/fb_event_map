@@ -1,17 +1,44 @@
 {
-	"env": {
-		"browser": true
-	},
-	"rules": {
+    "ecmaFeatures": {
+        "impliedStrict": true
+    },
+    "rules": {
+        "eqeqeq": 1,
+        "no-unused-vars": 1,
+        "no-shadow": 2,
+        "curly": 2,
+        "no-use-before-define": 2,
+        "no-empty": 1,
+        "no-cond-assign": 2,
+        "no-undef": 2,
+
 		"no-tabs": 0,
-		"indent": ["error", "tab", {
-			"SwitchCase": 1
-		}],
 		"operator-linebreak": 0,
-		"no-use-before-define": 2,
-		"semi": ["error", "always"],
+        "indent": [2, "tab", {
+            "SwitchCase": 1
+        }],
+        "no-multi-spaces": 2,
+        "comma-dangle": [2, "never"],
+        "no-extra-semi": 1,
+        "semi": [2, "always"],
+        "comma-spacing": [1, {
+            "before": false,
+            "after": true
+        }],
 		"key-spacing": 0,
-		"max-len": [2, 120, 2],
-		"object-curly-spacing": [2, "always"]
+		"object-curly-spacing": [2, "always"],
+        "space-before-blocks": 2
+    },
+    "env": {
+        "browser": true,
+        "jquery": true
+    },
+	"globals": {
+		"FB_EV_MAP": true,
+		"FBLogin": true,
+		"Map": true,
+		"Places": true,
+		"google": true,
+		"toastr": true
 	}
 }
