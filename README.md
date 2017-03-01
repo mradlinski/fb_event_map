@@ -9,7 +9,7 @@ The API is currently hosted at https://fb-event-map.ml/events. To download event
 - lat - floating point number representing latitude
 - lng - floating point number representing longitude
 
-If you plan on using the API more than a couple of times a day, PLEASE also provide your own Facebook access token:
+If you plan on using the API more than a couple of times a day, *PLEASE* also provide your own Facebook access token in a custom request header:
 - FB-Token-Auth (header)
 
 Facebook's API is rate limited, and every batch of events downloaded is a dozen or so requests.
