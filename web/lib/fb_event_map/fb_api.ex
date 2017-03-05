@@ -10,9 +10,9 @@ defmodule FbEventMap.FbApi do
   def get_places_at_loc(lat, lng, fb_token \\ default_fb_token()) do
     case fb_api_request("/search", [
       type: "place",
-			center: "#{lat},#{lng}",
-			distance: 2500,
-			limit: 1000
+      center: "#{lat},#{lng}",
+      distance: 2500,
+      limit: 1000
     ], fb_token) do
       {:ok, places} -> places
       {:error, %{"type" => "OAuthException"}} -> raise FbApiException
